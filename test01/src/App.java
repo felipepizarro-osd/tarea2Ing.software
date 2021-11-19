@@ -13,7 +13,7 @@ import java.sql.*;
 //2)ver si la persona tiene una reservacion activa
 //      Si tiene ver de cuantos dias es su reservacion
 //          si tiene una reservacion de 28 dias anterior a la fecha de reservacion no pasa a registrar la nueva incidencia
-//          si no registra en la base de datos el nuevo arriendo
+//          si no registra en la base de datos se registra el nuevo arriendo
 //          
 //      Si no la tiene ver los numeros de dias ingresados
 //          si es menor o igual a 28 dias actualizar la base de datos 
@@ -27,11 +27,13 @@ public class App {
             try{
                 Connection conectate = DriverManager.getConnection(DB, user, password);
                 JOptionPane.showMessageDialog(null, "Base de datos conectada con exito");
+                //inyeccion  sql con el arriendo nuevo 
                 
             }catch(Exception error){
-                JOptionPane.showMessageDialog(null, "intento de coneccion fallida revise las propiedades de coneccion");
+                JOptionPane.showMessageDialog(null, "intento de coneccion fallida revise las propiedades de coneion");
             }
             /*
+            int año = 2021;
             Scanner Sc = new Scanner(System.in);
             System.out.println("Ingrese su nombre porfavor ! :");
             String persona = Sc.nextLine();
@@ -40,7 +42,7 @@ public class App {
             int numeroDias = Sc.nextInt();
             System.out.println("Ingrese el año en que desea hacer la reservacion");
             String año = Sc.nextLine();
-            //arrienda(persona,numeroDias,)
+            //arrienda(persona,numeroDias,String year)
             */            
     }
 
