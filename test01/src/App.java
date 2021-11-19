@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import java.sql.*;
 
@@ -21,29 +22,43 @@ import java.sql.*;
 
 public class App {
     public static void main(String[] args) throws Exception {
-            String DB = "jdbc:postgresql://localhost:5432/sunsetbandb";
-            String user = "postgres";
-            String password = "root";
-            try{
-                Connection conectate = DriverManager.getConnection(DB, user, password);
-                JOptionPane.showMessageDialog(null, "Base de datos conectada con exito");
-                //inyeccion  sql con el arriendo nuevo 
-                
-            }catch(Exception error){
-                JOptionPane.showMessageDialog(null, "intento de coneccion fallida revise las propiedades de coneion");
-            }
-            /*
-            int año = 2021;
+            int year = 2021;
             Scanner Sc = new Scanner(System.in);
             System.out.println("Ingrese su nombre porfavor ! :");
             String persona = Sc.nextLine();
             System.out.println("Ingrese el numero de dias de su estancia ");
             //seleccionCasa(persona);
             int numeroDias = Sc.nextInt();
-            System.out.println("Ingrese el año en que desea hacer la reservacion");
-            String año = Sc.nextLine();
-            //arrienda(persona,numeroDias,String year)
-            */            
+            
+            arrienda(persona,numeroDias,year);
+                   
+    }
+    public static void IngresarArriendo(){
+        String DB = "jdbc:postgresql://localhost:5432/sunsetbandb";
+        String user = "postgres";
+        String password = "root";
+        try{
+            Connection conectate = DriverManager.getConnection(DB, user, password);
+            JOptionPane.showMessageDialog(null, "Base de datos conectada con exito");
+            //inyeccion  sql con el arriendo nuevo 
+            
+        }catch(Exception error){
+            JOptionPane.showMessageDialog(null, "intento de coneccion fallida revise las propiedades de coneion");
+        }
+        
+    }
+    public static boolean arrienda(String personArriendo,int dias, int año){
+        if( dias <= 27 ){
+            System.out.println("Ingreso de la casa dentro de lo permitido");
+
+        }else{
+            if (dias >= 28 ){
+                System.out.println("No puede escribir una incidencia de mas de 28 dias en un mismo año");
+            }
+        }
+        
+        
+        return true;
     }
 
 }
