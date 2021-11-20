@@ -31,9 +31,12 @@ public class App {
             int numeroDias = Sc.nextInt();
             
             arrienda(persona,numeroDias,year);
+            Sc.close();
                    
     }
     public static void IngresarArriendo(){
+
+
         String DB = "jdbc:postgresql://localhost:5432/sunsetbandb";
         String user = "postgres";
         String password = "root";
@@ -41,17 +44,42 @@ public class App {
             Connection conectate = DriverManager.getConnection(DB, user, password);
             JOptionPane.showMessageDialog(null, "Base de datos conectada con exito");
             //inyeccion  sql con el arriendo nuevo
-            String query = "SELECT * FROM casa ;"; 
+            String query = "SELECT FROM casa  join propietario on casa.id_propietario = propietario.id;"; 
             Statement st = conectate.createStatement();
             ResultSet rs = st.executeQuery(query);
 
-            if (rs.next()){
+            while (rs.next()){
                 System.out.println("id "+rs.getString(1)+" valor "+ rs.getString(2)+" Dueño "+ rs.getString(3));
             }
         }catch(Exception error){
             JOptionPane.showMessageDialog(null, "intento de coneccion fallida revise las propiedades de coneion");
         }
+        Scanner S = new Scanner (System.in);
+        System.out.println("Eliga el id de la casa que desea arrendar ");
+
+        int casaDeseada = S.nextInt();
         
+        reservarcasa(casaDeseada);
+        S.close();
+    }
+    public static void reservarcasa(int casa_id ){
+        String DB = "jdbc:postgresql://localhost:5432/sunsetbandb";
+        String user = "postgres";
+        String password = "root";
+        try {
+            Connection conectate = DriverManager.getConnection(DB, user, password);
+            //database conect succefully
+            String query = "SELECT * FROM casa WHERE id = ?;";
+            PreparedStatement pr = conectate.prepareStatement(query);
+            pr.setInt(1, casa_id);
+            ResultSet rs = pr.executeQuery(query);
+            while (rs.next()){
+                System.out.println("id "+rs.getString(1)+" valor "+ rs.getString(2)+" Dueño "+ rs.getString(3));
+            }
+            
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
     }
     public static boolean arrienda(String personArriendo,int dias, int año){
         if( dias <= 27 ){
