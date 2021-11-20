@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+
 
 import java.sql.*;
 
@@ -44,7 +44,7 @@ public class App {
             Connection conectate = DriverManager.getConnection(DB, user, password);
             JOptionPane.showMessageDialog(null, "Base de datos conectada con exito");
             //inyeccion  sql con el arriendo nuevo
-            String query = "SELECT FROM casa  join propietario on casa.id_propietario = propietario.id;"; 
+            String query = "SELECT * FROM casa  "; 
             Statement st = conectate.createStatement();
             ResultSet rs = st.executeQuery(query);
 
