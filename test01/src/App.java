@@ -39,7 +39,7 @@ public class App {
 
         String DB = "jdbc:postgresql://localhost:5432/sunsetbandb";
         String user = "postgres";
-        String password = "root";
+        String password = "oreo0605";
         try{
             Connection conectate = DriverManager.getConnection(DB, user, password);
             JOptionPane.showMessageDialog(null, "Base de datos conectada con exito");
@@ -65,7 +65,7 @@ public class App {
     public static void reservarcasa(int casa_id ){
         String DB = "jdbc:postgresql://localhost:5432/sunsetbandb";
         String user = "postgres";
-        String password = "root";
+        String password = "oreo0605";
         try {
             Connection conectate = DriverManager.getConnection(DB, user, password);
             //database conect succefully
@@ -106,7 +106,7 @@ public class App {
         int dias = 0;
         String DB = "jdbc:postgresql://localhost:5432/sunsetbandb";
         String user = "postgres";
-        String password = "root";
+        String password = "oreo0605";
         try {
             Connection conectate = DriverManager.getConnection(DB, user, password);
             JOptionPane.showMessageDialog(null, "Base de datos conectada con exito");

@@ -28,7 +28,12 @@ insert into propietario values ('19825203-6','Luis Flores');
 insert into propietario values ('19825204-6','Diego Barros');
 insert into propietario values ('19825205-6','Cristian Arqueros');
 
-
+insert into clientes values ('20163293-2', 'Juan', 12);
+insert into clientes values ('19202330-5', 'Jorge', 30);
+insert into clientes values ('20332243-3', 'Julio', 6);
+insert into clientes values ('18909322-4', 'Carlos', 29);
+insert into clientes values ('20332294-5', 'Francisco', 22);
+insert into clientes values ('21332933-2', 'Alejandro', 10);
 
 
 insert into casa values (1,300000,'19825202-6');
