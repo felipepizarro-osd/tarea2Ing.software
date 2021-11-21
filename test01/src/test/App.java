@@ -1,3 +1,4 @@
+package test;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
@@ -39,7 +40,7 @@ public class App {
 
         String DB = "jdbc:postgresql://localhost:5432/sunsetbandb";
         String user = "postgres";
-        String password = "root";
+        String password = "7211";
         try{
             Connection conectate = DriverManager.getConnection(DB, user, password);
             JOptionPane.showMessageDialog(null, "Base de datos conectada con exito");
@@ -51,7 +52,7 @@ public class App {
             while (rs.next()){
                 System.out.println("id "+rs.getString(1)+" valor "+ rs.getString(2)+" Dueño "+ rs.getString(3));
             }
-        }catch(Exception error){
+        }catch(SQLException error){
             JOptionPane.showMessageDialog(null, "intento de coneccion fallida revise las propiedades de conexion");
         }
         Scanner S = new Scanner (System.in);
@@ -65,30 +66,31 @@ public class App {
     public static void reservarcasa(int casa_id ){
         String DB = "jdbc:postgresql://localhost:5432/sunsetbandb";
         String user = "postgres";
-        String password = "root";
+        String password = "7211";
         try {
             Connection conectate = DriverManager.getConnection(DB, user, password);
             //database conect succefully
             String query = "SELECT * FROM casa WHERE id = ?;";
             PreparedStatement pr = conectate.prepareStatement(query);
             pr.setInt(1, casa_id);
-            ResultSet rs = pr.executeQuery(query);
+            ResultSet rs = pr.executeQuery();
             while (rs.next()){
                 System.out.println("id "+rs.getString(1)+" valor "+ rs.getString(2)+" Dueño "+ rs.getString(3));
             }
             
         } catch (Exception e) {
-            //TODO: handle exception
+            
             JOptionPane.showMessageDialog(null, "intento de coneccion fallida revise las propiedades de conexion");
 
         }
     }
     public static boolean arrienda(String personArriendo,int dias, int año){
         int dias_actuales = obtenerdias(personArriendo);
-        dias = dias_actuales+ dias;
+        dias = dias_actuales + dias;
         if( dias <= 27 ){
             System.out.println("Ingreso de la casa dentro de lo permitido");
             //llamar a la query para mostrar las casas disponibles
+            
             IngresarArriendo();
             return true;
         }else{
@@ -106,21 +108,24 @@ public class App {
         int dias = 0;
         String DB = "jdbc:postgresql://localhost:5432/sunsetbandb";
         String user = "postgres";
-        String password = "root";
+        String password = "7211";
         try {
             Connection conectate = DriverManager.getConnection(DB, user, password);
             JOptionPane.showMessageDialog(null, "Base de datos conectada con exito");
             //inyeccion  sql con el arriendo nuevo
-            String query = "SELECT * FROM clientes WHERE nombre = ? "; 
+            String query = "SELECT * FROM clientes WHERE clientes.nombre = ? "; 
             PreparedStatement st = conectate.prepareStatement(query);
             st.setString(1, p);
-            ResultSet rs = st.executeQuery(query);
+            //st.executeUpdate();
+            
+            ResultSet rs = st.executeQuery();
+
             while (rs.next()){
-                String numero = rs.getString(3);
-                dias = Integer.parseInt(numero);   
+                int numero = rs.getInt(3);
+                dias = numero;   
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Conexion fallida !!");
         }
         return dias ;
