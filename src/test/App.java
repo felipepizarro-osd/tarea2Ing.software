@@ -91,7 +91,8 @@ public class App {
             System.out.println("Ingreso de la casa dentro de lo permitido");
             //llamar a la query para mostrar las casas disponibles
             
-            IngresarArriendo();
+            //IngresarArriendo();
+            updateSQL(personArriendo, dias);
             return true;
         }else{
             if (dias >= 28 ){
@@ -132,4 +133,27 @@ public class App {
 
     }
 
+public static void updateSQL(String p, int dias){
+
+    String DB = "jdbc:postgresql://localhost:5432/sunsetbandb";
+    String user = "postgres";
+    String password = "7211";
+    try {
+        Connection conectate = DriverManager.getConnection(DB, user, password);
+        JOptionPane.showMessageDialog(null, "Base de datos conectada con exito");
+        //inyeccion  sql con el arriendo nuevo
+        String query = "UPDATE clientes SET cantidad_dias = ? WHERE clientes.nombre = ? "; 
+        PreparedStatement st = conectate.prepareStatement(query);
+        st.setInt(1, dias);
+        st.setString(2, p);
+        st.executeUpdate();
+        
+       // ResultSet rs = st.executeQuery();
+
+    } catch (SQLException e) {
+        System.out.println("Conexion fallida !!");
+    }
+
+    }
 }
+

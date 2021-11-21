@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class test_rut{
+public class test_arriendo{
     @Test
     public void arrienda_menor_a_28(){
 
