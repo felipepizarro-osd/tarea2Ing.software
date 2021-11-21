@@ -8,7 +8,7 @@ public class test_rut{
         String persona = "felipe";
         int dias = 14;
         int año = 2021;
-
+        
         
     }
 }

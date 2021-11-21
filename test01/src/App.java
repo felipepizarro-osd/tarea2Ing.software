@@ -52,7 +52,7 @@ public class App {
                 System.out.println("id "+rs.getString(1)+" valor "+ rs.getString(2)+" Dueño "+ rs.getString(3));
             }
         }catch(Exception error){
-            JOptionPane.showMessageDialog(null, "intento de coneccion fallida revise las propiedades de coneion");
+            JOptionPane.showMessageDialog(null, "intento de coneccion fallida revise las propiedades de conexion");
         }
         Scanner S = new Scanner (System.in);
         System.out.println("Eliga el id de la casa que desea arrendar ");
@@ -79,6 +79,8 @@ public class App {
             
         } catch (Exception e) {
             //TODO: handle exception
+            JOptionPane.showMessageDialog(null, "intento de coneccion fallida revise las propiedades de conexion");
+
         }
     }
     public static boolean arrienda(String personArriendo,int dias, int año){
