@@ -84,6 +84,8 @@ public class App {
         }
     }
     public static boolean arrienda(String personArriendo,int dias, int año){
+        int dias_actuales = obtenerdias(personArriendo);
+        dias = dias_actuales+ dias;
         if( dias <= 27 ){
             System.out.println("Ingreso de la casa dentro de lo permitido");
             //llamar a la query para mostrar las casas disponibles
@@ -99,6 +101,30 @@ public class App {
         
         
         
+    }
+    public static int obtenerdias(String p){
+        int dias = 0;
+        String DB = "jdbc:postgresql://localhost:5432/sunsetbandb";
+        String user = "postgres";
+        String password = "root";
+        try {
+            Connection conectate = DriverManager.getConnection(DB, user, password);
+            JOptionPane.showMessageDialog(null, "Base de datos conectada con exito");
+            //inyeccion  sql con el arriendo nuevo
+            String query = "SELECT * FROM clientes WHERE nombre = ? "; 
+            PreparedStatement st = conectate.prepareStatement(query);
+            st.setString(1, p);
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()){
+                String numero = rs.getString(3);
+                dias = Integer.parseInt(numero);   
+            }
+
+        } catch (Exception e) {
+            System.out.println("Conexion fallida !!");
+        }
+        return dias ;
+
     }
 
 }
