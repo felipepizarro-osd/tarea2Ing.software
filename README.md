@@ -13,3 +13,4 @@ sudo -u user psql
 create database sunsetbandb
 the main method contein the specification of the database 
 lets go !
+![image](https://user-images.githubusercontent.com/66143232/181386675-c88d007b-1c46-4f7a-ab19-51a3d64d44aa.png)
